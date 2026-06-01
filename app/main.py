@@ -2,12 +2,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import auth, vacancies, resumes, analytics
 
+# # Создание экземпляра FastAPI с метаданными
 app = FastAPI(
     title="HR Service",
     description="Service for managing employees, vacancies and candidates",
     version="1.0.0"
 )
 
+# Настройка CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -16,6 +18,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Подключение роутеров
 app.include_router(auth.router)
 app.include_router(vacancies.router)
 app.include_router(resumes.router)

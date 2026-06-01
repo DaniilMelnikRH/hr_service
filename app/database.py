@@ -3,6 +3,7 @@ from sqlalchemy.orm import declarative_base
 import os
 from dotenv import load_dotenv
 
+# Загружаем переменные окружения
 load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@db:5432/hr_db")

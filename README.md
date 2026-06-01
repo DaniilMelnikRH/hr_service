@@ -15,4 +15,6 @@
 
 docker-compose up --build
 
-P.S. Если вы видите это, значит я еще не успел добавить комментарии, как планировал. Добавлю в ближайшее время.
+## Запуск тестов
+
+docker-compose exec app python run_tests.py

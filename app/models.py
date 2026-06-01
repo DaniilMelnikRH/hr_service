@@ -5,15 +5,18 @@ from app.database import Base
 import enum
 
 class VacancyStatus(str, enum.Enum):
+    # Статусы вакансии
     OPEN = "open"
     CLOSED = "closed"
 
 class ResumeStatus(str, enum.Enum):
+    # Статусы рещюме
     ACTIVE = "active"
     HIRED = "hired"
     REJECTED = "rejected"
 
 class User(Base):
+    # Модель пользователя
     __tablename__ = "users"
     
     id = Column(Integer, primary_key=True, index=True)
@@ -25,6 +28,7 @@ class User(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 class Category(Base):
+    # Категория вакансии
     __tablename__ = "categories"
     
     id = Column(Integer, primary_key=True, index=True)
@@ -34,6 +38,7 @@ class Category(Base):
     vacancies = relationship("Vacancy", back_populates="category")
 
 class Position(Base):
+    # Должность
     __tablename__ = "positions"
     
     id = Column(Integer, primary_key=True, index=True)
@@ -42,6 +47,7 @@ class Position(Base):
     vacancies = relationship("Vacancy", back_populates="position")
 
 class Vacancy(Base):
+    # Модель вакансии
     __tablename__ = "vacancies"
     
     id = Column(Integer, primary_key=True, index=True)
@@ -62,6 +68,7 @@ class Vacancy(Base):
     resumes = relationship("VacancyResume", back_populates="vacancy", cascade="all, delete-orphan")
 
 class Resume(Base):
+    # Модель резюме
     __tablename__ = "resumes"
     
     id = Column(Integer, primary_key=True, index=True)
@@ -76,7 +83,7 @@ class Resume(Base):
     vacancies = relationship("VacancyResume", back_populates="resume", cascade="all, delete-orphan")
 
 class VacancyResume(Base):
-    """Связующая таблица для откликов на вакансии"""
+    # Связующая таблица для откликов на вакансии
     __tablename__ = "vacancy_resumes"
     
     id = Column(Integer, primary_key=True, index=True)
