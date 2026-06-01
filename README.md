@@ -15,6 +15,19 @@
 
 docker-compose up --build
 
+## Остановка
+
+docker-compose down
+
 ## Запуск тестов
 
 docker-compose exec app python run_tests.py
+
+## Логи
+
+docker-compose logs -f
+
+## API
+
+Swagger: http://localhost:8000/docs
+Health: http://localhost:8000/health
